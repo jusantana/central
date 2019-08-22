@@ -4,4 +4,8 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { Faker::Internet.password }
   end
+
+  factory :department do
+    name { Faker::Company.profession }
+  end
 end

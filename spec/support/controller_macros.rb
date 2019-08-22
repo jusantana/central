@@ -12,4 +12,8 @@ module ControllerMacros
       sign_in FactoryBot.create(:user)
     end
   end
+
+  def create_department
+    FactoryBot.create :department
+  end
 end
