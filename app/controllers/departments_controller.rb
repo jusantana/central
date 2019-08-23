@@ -1,5 +1,5 @@
 class DepartmentsController < ApplicationController
-  before_action :set_department, only: %i[show edit update destroy]
+  before_action :set_department, only: %i[show edit update destroy tasks new_task]
 
   # GET /departments
   # GET /departments.json
@@ -18,6 +18,16 @@ class DepartmentsController < ApplicationController
 
   # GET /departments/1/edit
   def edit; end
+
+  # GET /departments/1/tasks
+  def tasks
+    @tasks = @department.tasks.all
+  end
+
+  def new_task
+    @task = @department.tasks.build(action: params[:task], priority: params[:priority])
+    TaskChannel.broadcast_to(@department, @task) if @task.save
+  end
 
   # POST /departments
   # POST /departments.json
