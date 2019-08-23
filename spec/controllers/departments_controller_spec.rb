@@ -92,6 +92,24 @@ RSpec.describe DepartmentsController, type: :controller do
       end
     end
   end
+  describe 'POST #new_task' do
+    context 'with valid params' do
+      it 'creates a new task' do
+        expect do
+          Department.create(name: 'test') unless Department.find_by(id: 1)
+          post :new_task, params: { use_route: '/departments/1/new_task', id: 1, task: 'test', priority: '3' }, session: valid_session
+        end.to change(Task, :count).by(1)
+      end
+
+      it 'broadcasts new tasks' do
+        department = Department.create name: 'test'
+        expect do
+          post :new_task, params: { use_route: '/departments/1/new_task', id: 1, task: 'test',
+                                    priority: '3' }
+        end .to have_broadcasted_to(department).from_channel(TaskChannel)
+      end
+    end
+  end
 
   describe 'PUT #update' do
     context 'with valid params' do

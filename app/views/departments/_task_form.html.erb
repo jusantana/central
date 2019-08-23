@@ -1,8 +1,8 @@
-<%= form_with(model: department, local: true) do |form| %>
+<%= form_with(url: "/departments/#{department.id}/new_task",remote: true) do |form| %>
 <% if department.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(department.errors.count, "error") %>
-      prohibited this department from being saved:</h2>
+      prohibited this task from being saved:</h2>
 
     <ul>
       <% department.errors.full_messages.each do |message| %>
@@ -13,8 +13,13 @@
 <% end %>
 
 <div class="field" data-controller='hello'>
-  <%= form.label :name %>
-  <%= form.text_field :name, data: { action: 'hello#greet',target: 'hello.name'} %>
+  <%= form.label :task %>
+  <%= form.text_field :task, data: { action: 'hello#greet',target: 'hello.name'} %>
+</div>
+
+<div class="field" data-controller='hello'>
+  <%= form.label :priority %>
+  <%= form.range_field :priority, in: 1..5 %>
 </div>
 
 <div class="actions">

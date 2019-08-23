@@ -1,5 +1,5 @@
 class DepartmentsController < ApplicationController
-  before_action :set_department, only: [:show, :edit, :update, :destroy]
+  before_action :set_department, only: %i[show edit update destroy tasks new_task]
 
   # GET /departments
   # GET /departments.json
@@ -9,8 +9,7 @@ class DepartmentsController < ApplicationController
 
   # GET /departments/1
   # GET /departments/1.json
-  def show
-  end
+  def show; end
 
   # GET /departments/new
   def new
@@ -18,7 +17,16 @@ class DepartmentsController < ApplicationController
   end
 
   # GET /departments/1/edit
-  def edit
+  def edit; end
+
+  # GET /departments/1/tasks
+  def tasks
+    @tasks = @department.tasks.all
+  end
+
+  def new_task
+    @task = @department.tasks.build(action: params[:task], priority: params[:priority])
+    TaskChannel.broadcast_to(@department, task: render_task(@task)) if @task.save
   end
 
   # POST /departments
@@ -62,13 +70,18 @@ class DepartmentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_department
-      @department = Department.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def department_params
-      params.require(:department).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_department
+    @department = Department.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def department_params
+    params.require(:department).permit(:name, task_attributes: %i[action priority])
+  end
+
+  def render_task(task)
+    render(partial: 'task', locals: { task: task })
+  end
 end
