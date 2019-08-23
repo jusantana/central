@@ -26,7 +26,7 @@ class DepartmentsController < ApplicationController
 
   def new_task
     @task = @department.tasks.build(action: params[:task], priority: params[:priority])
-    TaskChannel.broadcast_to(@department, @task) if @task.save
+    TaskChannel.broadcast_to(@department, task: render_task(@task)) if @task.save
   end
 
   # POST /departments
@@ -79,5 +79,9 @@ class DepartmentsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def department_params
     params.require(:department).permit(:name, task_attributes: %i[action priority])
+  end
+
+  def render_task(task)
+    render(partial: 'task', locals: { task: task })
   end
 end

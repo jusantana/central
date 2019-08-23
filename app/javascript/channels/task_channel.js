@@ -3,6 +3,7 @@ import consumer from "./consumer"
 consumer.subscriptions.create({channel: "TaskChannel", department_id: document.querySelector('head').dataset.departmentId }, {
   connected() {
     // Called when the subscription is ready for use on the server
+    console.log("connected");
   },
 
   disconnected() {
@@ -10,7 +11,8 @@ consumer.subscriptions.create({channel: "TaskChannel", department_id: document.q
   },
 
   received(data) {
-    $('#tasks_table').append(data.action);
+    $('#tasks_table').append(data.task);
+    console.log(data.task)
     // Called when there's incoming data on the websocket for this channel
   }
 });
