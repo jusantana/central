@@ -1,7 +1,11 @@
 class TaskChannel < ApplicationCable::Channel
   def subscribed
-    department = Department.find params[:department_id]
-    stream_for department
+    if params[:department_id].nil?
+      reject
+    else
+      department = Department.find params[:department_id]
+      stream_for department
+ end
   end
 
   def unsubscribed
