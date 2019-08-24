@@ -14,12 +14,14 @@
 
 <div class="field" data-controller='hello'>
   <%= form.label :task %>
-  <%= form.text_field :task, data: { action: 'hello#greet',target: 'hello.name'} %>
+  <%= form.text_area :task,class: "textarea", data: { action: 'hello#greet',target: 'hello.name'},required: true %>
 </div>
 
-<div class="field" data-controller='hello'>
-  <%= form.label :priority %>
-  <%= form.range_field :priority, in: 1..5 %>
+<div class="range-slider" data-controller="task">
+  <label for="customRange" class="title">Prioridad</label>
+  <p class="priority_value subtitle" data-target="task.priorityValue">Normal</p>
+  <input type="range" name="priority" class="slider is-info" data-target="task.range_val" data-action="input->task#updatePriorityValue" value="2" min="1" max="3" step="1">
+
 </div>
 
 <div class="actions">

@@ -1,5 +1,9 @@
-<tr>
-  <td><%= task.action %></td>
-  <td><%= task.priority %></td>
-  <td><%= task.status %></td>
-</tr>
+<div data-controller="task" class='column box is-large is-one-quarter is-offset-1'>
+  <h1 data-target="task.realPriorityVal"><%= task.priority %></h1>
+  <p>
+    <%= task.action %>
+  </p>
+  <p data-target="task.status">
+    <%= task.status %>
+  </p>
+</div>
