@@ -1,4 +1,9 @@
-<h1><%= @department.name %></h1>
+<div class="content has-text-centered">
 
-<%= render 'task_table',tasks: @tasks %>
-<%= render 'task_form', department: @department %>
+  <h1 class="title"><%= @department.name %></h1>
+
+  <%= render 'task_table',tasks: @tasks %>
+  <div class='box is-center'>
+    <%= render 'task_form', department: @department %>
+  </div>
+</div>

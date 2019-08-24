@@ -21,11 +21,12 @@ class DepartmentsController < ApplicationController
 
   # GET /departments/1/tasks
   def tasks
-    @tasks = @department.tasks.all
+    @tasks = @department.tasks.all.order(priority: :desc)
   end
 
   def new_task
     @task = @department.tasks.build(action: params[:task], priority: params[:priority])
+    @task.status = 0
     TaskChannel.broadcast_to(@department, task: render_task(@task)) if @task.save
   end
 

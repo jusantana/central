@@ -11,7 +11,7 @@ consumer.subscriptions.create({channel: "TaskChannel", department_id: document.q
   },
 
   received(data) {
-    $('#tasks_table').append(data.task);
+    $('#column_ancestor').append(data.task);
     console.log(data.task)
     // Called when there's incoming data on the websocket for this channel
   }
