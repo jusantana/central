@@ -27,8 +27,8 @@ class DepartmentsController < ApplicationController
   def new_task
     @task = @department.tasks.build(action: params[:task], priority: params[:priority])
     @task.status = 0
-    TaskChannel.broadcast_to(@department, task: render_task(@task)) if @task.save
-  end
+    BroadcastMessageJob.perform_later @department, @task if @task.save
+      end
 
   # POST /departments
   # POST /departments.json
