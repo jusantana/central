@@ -106,7 +106,7 @@ RSpec.describe DepartmentsController, type: :controller do
         expect do
           post :new_task, params: { use_route: '/departments/1/new_task', id: 1, task: 'test',
                                     priority: '3' }
-        end .to have_broadcasted_to(department).from_channel(TaskChannel)
+        end .to have_enqueued_job(BroadcastMessageJob)
       end
     end
   end
