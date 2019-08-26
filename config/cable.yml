@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://redistogo:75d54cebfd1b27ab70dccae32cc60b9a@hammerjaw.redistogo.com:11120/" } %>
+  url: <%= ENV.fetch("REDIS_URL") {nil} %>
   channel_prefix: central_production

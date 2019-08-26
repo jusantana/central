@@ -7,8 +7,7 @@ install:
   - node -v
   - npm i -g yarn
   - yarn
-cache:
-  bundler: true
+cache: bundler
 before_script:
   - bundle exec rake db:create db:migrate RAILS_ENV=test
 script:
