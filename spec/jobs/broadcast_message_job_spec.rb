@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe BroadcastMessageJob, type: :job do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'queues the job' do
+    task = FactoryBot.create :task
+    expect { BroadcastMessageJob.perform_later(task.department, task) }.to have_enqueued_job(BroadcastMessageJob)
+  end
 end
