@@ -26,16 +26,17 @@ gem 'pg'
 
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'redis'
+# resque scheduler
+gem 'resque'
+# resque web
+gem 'resque-web', require: 'resque_web'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem 'devise'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
-group :production do
-  gem 'redis'
-end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'action-cable-testing'
