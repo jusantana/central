@@ -9,8 +9,6 @@ install:
   - npm i -g yarn
   - yarn
 cache: bundler
-before_script:
-  - bundle exec rake db:create db:migrate RAILS_ENV=test
 script:
   - bundle exec rails webpacker:compile
   - bundle exec rake
