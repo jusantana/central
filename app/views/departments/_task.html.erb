@@ -1,4 +1,4 @@
-<div data-controller="task" class='column box is-large is-one-quarter is-offset-1'>
+<div data-controller="task" data-channel="<%= task.department.id %>" data-task-id="<%= task.id %>" class='column box is-large is-one-quarter is-offset-1'>
   <h1 data-target="task.realPriorityVal"><%= task.priority %></h1>
   <p>
     <%= task.action %>
