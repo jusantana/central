@@ -20,7 +20,6 @@ $(document).on('turbolinks:load', function() {
   console.log(`connections: ${connections}`)
   let departmentId = $('#department_tasks_page').data("departmentId")
   if (departmentId && !connectedTo(departmentId)) {
-    debugger;
     consumer.subscriptions.create({
       channel: "TaskChannel",
       department_id: departmentId
