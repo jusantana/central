@@ -1,4 +1,4 @@
-<div class="columns is-multiline" id="column_ancestor">
+<div class="columns is-multiline box" id="column_ancestor" data-controller="table" data-action="new-task->table#newTask">
   <% tasks.each do |t| %>
     <%= render "task",task: t %>
   <% end %>

@@ -1,9 +1,17 @@
-<div data-controller="task" data-channel="<%= task.department.id %>" data-task-id="<%= task.id %>" class='column box is-large is-one-quarter is-offset-1'>
-  <h1 data-target="task.realPriorityVal"><%= task.priority %></h1>
-  <p>
-    <%= task.action %>
-  </p>
-  <p data-target="task.status">
-    <%= task.status %>
-  </p>
+<div data-controller="task" data-channel="<%= task.department.id %>" data-status="<%= task.status %>" data-task-id="<%= task.id %>" data-priority="<%= task.priority %>" class='column box is-large is-one-quarter is-offset-1'>
+  <header class='card-header'>
+    <p class="card-header-title" data-target="task.realPriorityVal">
+      <%= task.priority %>
+    </p>
+  </header>
+  <div class="card-content">
+    <p>
+      <%= simple_format(task.action) %>
+    </p>
+  </div>
+  <div class="card-footer">
+    <p data-target="task.status">
+      <%= task.status %>
+    </p>
+  </div>
 </div>

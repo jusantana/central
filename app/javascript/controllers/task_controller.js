@@ -6,11 +6,12 @@ export default class extends Controller {
     "status", "priority", "priorityValue", "range_val"
   ]
 
+
   connect() {
     if (this.hasStatusTarget) {
       const element = this.statusTarget;
       const code = element.innerHTML;
-      switch (+code) {
+      switch (+$(this.element).data("status")) {
         case 0:
           element.innerHTML = "Idle";
           break;
@@ -29,7 +30,7 @@ export default class extends Controller {
       const element = this.realPriorityValTarget;
       const priority = element.innerHTML;
       console.log(priority)
-      switch (+priority) {
+      switch (+$(this.element).data("priority")) {
         case 1:
           element.innerHTML = "Baja";
           break;
@@ -44,7 +45,10 @@ export default class extends Controller {
       }
 
     }
+
   }
+
+
   updatePriorityValue(evt) {
 
     switch (+evt.currentTarget.value) {
