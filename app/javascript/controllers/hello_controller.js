@@ -7,14 +7,16 @@
 //   <h1 data-target="hello.output"></h1>
 // </div>
 
-import { Controller } from "stimulus"
+import {
+  Controller
+} from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "name" ]
+  static targets = ["name"]
 
   greet() {
-    const element = this.nameTarget
-    const name = element.value
-    console.log(`Loged in ${name}`, this.element)
+    //  const element = this.nameTarget
+    //  const name = element.value
+    //  console.log(`Loged in ${name}`, this.element)
   }
 }
