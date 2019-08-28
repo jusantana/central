@@ -22,6 +22,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # Postgres
 gem 'pg'
+# new relic
+gem 'newrelic_rpm'
 # Use Redis adapter to run Action Cable in production
 gem 'redis'
 
