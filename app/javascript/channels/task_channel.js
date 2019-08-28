@@ -16,21 +16,15 @@ const connectedTo = (id) => {
   return connections.indexOf(id) > -1
 }
 
-const findDiv = (children, newPriority) => {
-  var appendBefore = "beforeend"
-  return Array.prototype.slice.call(children).filter((ele) => {
-    let elePriority = $(ele).data("priority");
-    return elePriority >= newPriority
-  })
-}
 const sortThem = (s) => {
-  Array.prototype.slice.call(s).sort(function sort(ea, eb) {
+  Array.prototype.slice.call(s).sort((ea, eb) => {
     var a = +$(ea).data("priority");
     var b = +$(eb).data("priority");
     if (a < b) return 1;
     if (a > b) return -1;
     return 0;
-  }).forEach(function(div) {
+  }).forEach((div) => {
+    console.log(div.parentElement)
     div.parentElement.appendChild(div);
   });
 }
@@ -57,9 +51,8 @@ $(document).on('turbolinks:load', function() {
 
       received(data) {
         let ancestor = document.getElementById("column_ancestor")
-        let children = ancestor.childNodes
+        let children = ancestor.children
         let newPriority = $(data.task).data("priority")
-        console.log(findDiv(children, newPriority))
         $(ancestor).append(data.task);
         sortThem(children);
         const event = document.createEvent("CustomEvent");
