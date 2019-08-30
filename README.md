@@ -1,11 +1,11 @@
-# README
+# ![travis](https://travis-ci.org/jusantana/central.svg?branch=master "Travis Status")
+
+# Central Tasks
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
-
-* Ruby version
+* Ruby 2.6.3
 
 * System dependencies
 
